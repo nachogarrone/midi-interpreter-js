@@ -1,5 +1,4 @@
 var express = require('express');
-var midigenerator = require('jison');
 var router = express.Router();
 
 /* GET home page. */

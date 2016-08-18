@@ -1,7 +1,7 @@
 /**
  * Created by nachogarrone on 17/8/16.
  */
-var Parser = require("/node_modules/jison").Parser;
+var Parser = require("jison").Parser;
 
 var grammar = {
     "lex": {
@@ -21,3 +21,6 @@ var parser = new Parser(grammar);
 
 // generate source, ready to be written to disk
 var parserSource = parser.generate();
+
+console.log('Parsing...');
+console.log(parser.parse("adfe34bc e82a"));
