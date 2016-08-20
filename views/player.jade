@@ -5,3 +5,13 @@ head
 block content
     h1= title
     p Welcome to the awesome #{title}
+    form(name="parserForm", action="/player", method="post")
+        input(type="text", name="source")
+        input(type="submit", value="test")
+    if (typeof(parseResult) !== 'undefined')
+        if(parseResult==true)
+            p Parseado correctamente
+        else
+            p Error al parsear texto
+    else
+        p Enter your text to be parsed
