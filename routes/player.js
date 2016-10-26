@@ -1,16 +1,21 @@
 var express = require('express');
 var Parser = require("jison").Parser;
+var path = require("path");
+//Require MIDIPlayer and MIDIFile modules
+var MIDIPlayer = require('midiplayer');
+var MIDIFile = require('midifile');
+var fs = require('fs');
 
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.render('player', { title: 'Midi JS Player' });
+router.get('/', function (req, res, next) {
+    res.render('player', {title: 'Midi JS Player'});
 });
 
 router.post('/', function (req, res) {
     var parseResult = parser(req.body.source);
-    res.render('player', { title: 'Midi JS Player', parseResult: parseResult });
+    res.render('player', {title: 'Midi JS Player', parseResult: parseResult});
 });
 
 var grammar = {
@@ -22,19 +27,25 @@ var grammar = {
     },
 
     "bnf": {
-        "hex_strings" :[ "hex_strings HEX",
-            "HEX" ]
+        "hex_strings": ["hex_strings HEX",
+            "HEX"]
     }
 };
 
 function parser(source) {
-    if(source){
+    if (source) {
         var parser = new Parser(grammar);
 
-        console.log('Parsing...');
         var ret = parser.parse(source);
         console.log(ret);
-        return ret;
+
+
+        // MIDI OUTPUT
+        var data = fs.readFileSync('/Applications/XAMPP/xamppfiles/htdocs/midi-interpreter-js/routes/mozart.mid');
+        console.log(data);
+
+
+        return data;
     }
 }
 
