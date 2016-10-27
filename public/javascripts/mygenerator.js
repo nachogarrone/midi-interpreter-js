@@ -28,22 +28,42 @@ var grammar = {
     },
 
     "bnf": {
-        "partitura" :[ "partitura HEX",
-            "HEX" ]
+        "signo_igual" :[ "signo_igual IGUAL",
+            "IGUAL" ],
+        "time" :[ "time TIME",
+            "TIME" ],
+        "bpm" :[ "bpm BPM",
+            "BPM" ],
+        "silencio" :[ "silencio SILENCIO",
+            "SILENCIO" ],
+        "guion" :[ "guion GUION",
+            "GUION" ],
+        "barra" :[ "barra BARRA",
+            "BARRA" ],
+        "simple" :[ "simple SIMPLE",
+            "SIMPLE" ],
+        "fin" :[ "fin FIN",
+            "FIN" ],
+        "inicio_repeticion" :[ "inicio_repeticion INICIO_REPETICION",
+            "INICIO_REPETICION" ],
+        "fin_repeticion" :[ "fin_repeticion FIN_REPETICION",
+            "FIN_REPETICION" ],
+        "nota" :[ "nota NOTA",
+            "NOTA" ],
+        "octava" :[ "octava OCTAVA",
+            "OCTAVA" ],
+        "valor_compas" :[ "valor_compas VALOR_COMPAS",
+            "VALOR_COMPAS" ],
+        "numero" :[ "numero NUM",
+            "NUM" ],
+        "valor" :[ "valor VALOR",
+            "VALOR" ],
+        "alteracion" :[ "alteracion ALTERACION",
+            "ALTERACION" ]
     }
 };
 
 
-/*
-
- \#{1,2}|\@{1,2}|n
- { String $1 = yytext(); String $0;
- $0 = $1;
- return new Symbol(ALTERACION, yyline, yycolumn, $0); }
- [ \t\r\n\f\v]+
- { /* Ignore */ }
-
-*/
 
 var parser = new Parser(grammar);
 
