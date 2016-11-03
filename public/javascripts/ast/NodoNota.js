@@ -4,7 +4,7 @@
     var nombreNota;
     var alteracion;
 
-    NodoNota(String nombreNota) {
+    function NodoNota(nombreNota) {
     this.nombreNota = nombreNota;
     }
 

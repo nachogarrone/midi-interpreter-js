@@ -37,7 +37,7 @@ function semanticCheck(state) {
     return null;
 }
 
-function compileMIDI(State state, Track track) throws Exception {
+function compileMIDI(state, track){
     var valorNota = 0.0;
     switch (valor) {
         case "w":
@@ -64,9 +64,9 @@ function compileMIDI(State state, Track track) throws Exception {
     }
 
     var tiempoNegraSegundo = state.variablesPartitura.get("bpm") / 60;
-    var startick = 0;
+    var startick = 0.0;
     notas.forEach(function () {
-        var valorFigura = 0;
+        var valorFigura = 0.0;
         if (nodoNota.nombreNota.equals(NotaEnum.LA)) {
             valorFigura = 0.0;
         } else if (nodoNota.nombreNota.equals(NotaEnum.SI)) {
@@ -82,7 +82,7 @@ function compileMIDI(State state, Track track) throws Exception {
         } else if (nodoNota.nombreNota.equals(NotaEnum.SOL)) {
             valorFigura = 12.0;
         }
-        var valorAlteracion = 0;
+        var valorAlteracion = 0.0;
         if (nodoNota.alteracion != null) {
             if (nodoNota.alteracion.equals(AlteracionEnum.SOSTENIDO)) {
                 valorAlteracion = 1.0;
@@ -123,22 +123,25 @@ function equals(obj) {
         return true;
     if (obj == null)
         return false;
-    if (getClass() != obj.getClass())
+    if (typeof (this) != typeof (obj))
         return false;
-    Nota other = (Nota) obj;
-    if (!Arrays.equals(notas, other.notas))
-        return false;
-    if (octava == null) {
-        if (other.octava != null)
+    var other = obj;
+    if (other instanceof Nota){
+        if (!notas.equals(other.notas))
             return false;
-    } else if (!octava.equals(other.octava))
-        return false;
-    if (valor == null) {
-        if (other.valor != null)
+        if (octava == null) {
+            if (other.octava != null)
+                return false;
+        } else if (!octava.equals(other.octava))
             return false;
-    } else if (!valor.equals(other.valor))
-        return false;
-    return true;
+        if (valor == null) {
+            if (other.valor != null)
+                return false;
+        } else if (!valor.equals(other.valor))
+            return false;
+        return true;
+    }
+    return false;
 }
 
 function addNote(track, startTick, tickLength, key){

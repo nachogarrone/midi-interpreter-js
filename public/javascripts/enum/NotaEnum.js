@@ -12,7 +12,7 @@ var NotaEnum = {
 };
     var nota;
 
-function NotaEnum(nota) {
+    function NotaEnum(nota) {
         this.nota = nota;
     }
 
@@ -20,6 +20,6 @@ function NotaEnum(nota) {
         return nota;
     }
 
-    function setNota(String nota) {
+    function setNota(nota) {
         this.nota = nota;
     }

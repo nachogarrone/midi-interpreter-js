@@ -85,10 +85,10 @@ function generate(random, min, max) {
     return new Silencio(figuras[(int) (Math.random() * 3)]);
 }
 
-function addSilence(track, startTick, tickLength, key) throws InvalidMidiDataException {
-    ShortMessage on = new ShortMessage();
+function addSilence(track, startTick, tickLength, key){
+    var on = new ShortMessage();
     on.setMessage(ShortMessage.NOTE_ON, 0, key, 0);
-    ShortMessage off = new ShortMessage();
+    var off = new ShortMessage();
     off.setMessage(ShortMessage.NOTE_OFF, 0, key, 0);
     track.add(new MidiEvent(on, startTick));
     track.add(new MidiEvent(off, startTick + tickLength));

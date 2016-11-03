@@ -1,16 +1,15 @@
 /**
  * Created by Emanuel Chalela on 2/11/2016.
  */
-var AlteracionEnum{
-    SOSTENIDO: "#",
-    DOBLE_SOSTENIDO: "##",
-    BEMOL: "@",
-    DOBLE_BEMOL: "@@",
-    BECUADRO: "n"
+var AlteracionEnum = {
+    SOSTENIDO : "#",
+    DOBLE_SOSTENIDO : "##",
+    BEMOL : "@",
+    DOBLE_BEMOL : "@@",
+    BECUADRO : "n"
 };
 
     var alteracion;
-
     function AlteracionEnum(alteracion) {
         this.alteracion = alteracion;
     }
@@ -19,6 +18,6 @@ var AlteracionEnum{
         return alteracion;
     }
 
-    function setDiv(String div) {
+    function setDiv(div) {
         this.alteracion = div;
     }

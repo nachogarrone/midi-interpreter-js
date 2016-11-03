@@ -26,7 +26,7 @@ var grammar = {
             ["[\t\r\n\f\v]+", "/* ignore */"]
         ]
     },
-
+    "operators": [],
     "bnf": {
         "signo_igual" :[ "signo_igual IGUAL",
             "IGUAL" ],
@@ -59,11 +59,16 @@ var grammar = {
         "valor" :[ "valor VALOR",
             "VALOR" ],
         "alteracion" :[ "alteracion ALTERACION",
-            "ALTERACION" ]
+            "ALTERACION" ],
+        "partitura" :[[ "partitura PARTITURA",
+            "PARTITURA"],["BPM IGUAL NUM TIME IGUAL VALOR_COMPAS LISTA_COMPAS FIN", "$$ = PARTITURA($0(COMPAS($0.size())))"]]
+
+        /*
+         partitura ::= BPM:$1 IGUAL:$2 NUM:$3 TIME:$4 IGUAL:$5 VALOR_COMPAS:$6 listaCompas:$0 FIN:$7
+         {: RESULT = new  Partitura($0.toArray(new Compas[$0.size()]),$6,$3); :};
+         */
     }
 };
-
-
 
 var parser = new Parser(grammar);
 

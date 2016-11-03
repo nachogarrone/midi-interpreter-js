@@ -1,7 +1,7 @@
 /**
  * Created by Emanuel Chalela on 2/11/2016.
  */
-var BarraDivisoriaEnum {
+var BarraDivisoriaEnum = {
     SIMPLE: "|",
     FIN: "||",
     INICIO_REPETICION: "|:",
