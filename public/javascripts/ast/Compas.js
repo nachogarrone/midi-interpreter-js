@@ -82,6 +82,24 @@ function hashCode() {
     return result;
 }
 
+Array.prototype.equals = function (array) {
+    if (!array)
+        return false;
+
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 function equals(obj) {
     if (this == obj)
         return true;
@@ -91,7 +109,7 @@ function equals(obj) {
         return false;
     var other = obj;
     if (other instanceof Compas){
-        if (!Arrays.equals(statements, other.statements))
+        if (!statements.equals(other.statements))
             return false;
         return true;
     } else {
