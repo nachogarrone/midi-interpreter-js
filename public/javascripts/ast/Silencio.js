@@ -82,7 +82,7 @@ function equals(obj) {
 
 function generate(random, min, max) {
     var figuras = ["w","h","q","8","16","32","64"];
-    return new Silencio(figuras[(int) (Math.random() * 3)]);
+    return new Silencio(figuras[Math.random() * 3]);
 }
 
 function addSilence(track, startTick, tickLength, key){

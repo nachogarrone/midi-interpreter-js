@@ -13,10 +13,16 @@ function hashCode(){}
 
 function equals(obj){}
 
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
 function generate(random, min, max) {
     var TERMINAL_COUNT = 1;
     var NONTERMINAL_COUNT = 4;
-    var i = Math.random(TERMINAL_COUNT + NONTERMINAL_COUNT);
+    var min = 0;
+    var max = TERMINAL_COUNT + NONTERMINAL_COUNT;
+    var i = getRandom(min,max);
     switch (i) {
         // Terminals
         case 0:

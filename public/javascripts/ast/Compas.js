@@ -26,7 +26,7 @@ function semanticCheck(state) {
     var sumavalorSimbolosCompas = 0;
     var aux = null;
     statements.forEach(function () {
-       var valorSimbolo = 0;
+       var valorSimbolo = 0.0;
         if (simbolo instanceof Nota) {
             switch (simbolo.valor) {
             case "w":
@@ -87,10 +87,16 @@ function equals(obj) {
         return true;
     if (obj == null)
         return false;
-    if (getClass() != obj.getClass())
+    if (typeof (this) != typeof (obj))
         return false;
     var other = obj;
-    if (!Arrays.equals(statements, other.statements))
+    if (other instanceof Compas){
+        if (!Arrays.equals(statements, other.statements))
+            return false;
+        return true;
+    } else {
         return false;
-    return true;
+    }
+
+
 }
