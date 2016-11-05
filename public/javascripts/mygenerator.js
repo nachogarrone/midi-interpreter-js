@@ -61,12 +61,36 @@ var grammar = {
         "alteracion" :[ "alteracion ALTERACION",
             "ALTERACION" ],
         "partitura" :[[ "partitura PARTITURA",
-            "PARTITURA"],["BPM IGUAL NUM TIME IGUAL VALOR_COMPAS LISTA_COMPAS FIN", "$$ = PARTITURA($0(COMPAS($0.size())))"]]
+            "PARTITURA"],["BPM IGUAL NUM TIME IGUAL VALOR_COMPAS LISTA_COMPAS FIN", "$$ = PARTITURA($7(COMPAS($7.size())),$6,$3)"]],
+        "nodoNota" :[[ "nodoNota NODONOTA",
+            "NODONOTA"],["NOTA", "$$ = $1"],["NOTA ALTERACION","$$ = $1,$2"]],
+        "simbolo" :[[ "simbolo SIMBOLO",
+            "SIMBOLO"],["NOTA BARRA OCTAVA BARRA VALOR", "$$ = NOTA($1(NODONOTA($1.size())),$3,$5);"],["SILENCIO BARRA VALOR","$$ = SILENCIO($3);"]],
+        "compas" :[[ "compas COMPAS",
+            "COMPAS"],["SIMBOLOS_COMPAS", "$$ = COMPAS($2(SIMBOLO($2.size())));"]],
+        "nota" :[["nodoNota","$$ = "]], /*Este falta*/
+        "simbolo_compas" :[["simbolo","$$ = simbolo.push($1);return simbolo;"],["simbolo_compas simbolo","$$ = $1.push($2);"]],
+        "listaCompas" :[["compas","$$ = compas.push($1);return compas;"],["listaCompas SIMPLE compas","$$ = $1.push($2);"],["INICIO_REPETICION listaCompas FIN_REPETICION","$$ = $1.push($2);"]]
+
+        
 
         /*
          partitura ::= BPM:$1 IGUAL:$2 NUM:$3 TIME:$4 IGUAL:$5 VALOR_COMPAS:$6 listaCompas:$0 FIN:$7
          {: RESULT = new  Partitura($0.toArray(new Compas[$0.size()]),$6,$3); :};
          */
+
+        /*
+         repeat$nota ::=
+         nodoNota:$1
+         {: List<NodoNota> $0;
+         $0 = new ArrayList<NodoNota>();
+         $0.add($1);
+         RESULT = $0; :}
+         |	repeat$nota:$1 GUION:$3 nodoNota:$2
+         {: List<NodoNota> $0;
+         $1.add($2); $0 = $1;
+         RESULT = $0; :}
+        */
     }
 };
 
